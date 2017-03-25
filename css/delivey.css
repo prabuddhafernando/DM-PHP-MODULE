@@ -1,0 +1,46 @@
+.row cls{
+    margin-top:40px;
+    padding: 0 10px;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+
+.panel-heading span {
+    margin-top: -1px;
+    font-size: 15px;
+}
+
+.tablebord{
+    margin-top: 20px;
+}
+
+#menuitm{
+    background-color:#f2f2f2;
+    height: 100%;
+}
+#menuitm .btn-group-vertical button{
+    background-color: #f2f2f2;
+}
+
+@media screen and (max-width: 845px) and (min-width: 769px) {
+
+  .row .cls{
+      width: 85%;
+  }
+}
+@media screen and (max-width: 906px) and (min-width: 845px) {
+
+    .row .cls{
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 1409px) and (min-width: 990px) {
+
+    .row .cls{
+        width: 87%;
+    }
+}
