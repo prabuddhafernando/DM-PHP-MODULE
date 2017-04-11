@@ -103,7 +103,7 @@
                                 <div class="container">
                                     <!-- Trigger the modal with a button -->
                                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Add New</button>
-                                    <button class="btn btn-lg btn-secondary" >remove</button>
+                                    <button  id="removeElememt" class="btn btn-lg btn-secondary" >remove</button>
                                     <!-- Modal for add client -->
                                     <div class="modal fade" id="myModal" role="dialog">
                                         <div class="modal-dialog" style="width: 80%;height: 80%">
@@ -114,7 +114,8 @@
                                                     <h3 class="modal-title">Add New Client</h3>
                                                 </div>
                                                 <div class="modal-body" >
-                                                    <form action="/action_page.php" method="post" style="width:100%;padding-left: 18% ;padding-right: 10%;">
+                                               <!--  form starting  -->
+                                                    <form action="./dto/insert_client.php" method="post" style="width:100%;padding-left: 18% ;padding-right: 10%;">
                                                         <div class= "row" style="padding: 30px;">
 
                                                             <table class="table" style="width:100%">
@@ -149,13 +150,13 @@
                                                                     <td>Contact Person</td>
                                                                     <td  style="width: 80%;">
                                                                         <!--<input type="text"  class="form-controlform-control" name="contcperson" style="width: 100%"/>-->
-                                                                        <div  class="input textarea clearfix tagfield"  style="width: 100%;"></div>
+                                                                        <div  class="input textarea clearfix tagfield" name="contact_person" style="width: 100%;"></div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Address</td>
                                                                     <td>
-                                                                        <input type="text" class="form-control" name="add" style="width: 100%"/>
+                                                                        <input type="text" class="form-control" name="address" style="width: 100%"/>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -228,7 +229,7 @@
 
 
                                         echo '<tr>
-                                                <th scope="row"> <input type="checkbox" class="form-check-input"></th>
+                                                <th scope="row"> <input type="checkbox" name="location[]" value="'.$c_name.'" class="form-check-input"></th>
                                                 <td>'.$c_name.'</td>
                                                 <td>
                                                     <ul>
@@ -289,15 +290,39 @@
             },
         });
 
-       /* function dome() {
-                for(var i=0;i<persons.getTags().elements.length;i++){
-                    var v = persons.getTags().elements[i].textContent;
-                    var d = v.substr(0,(v.length-1))
-                    console.log(d);
-                }
-        }*/
 
+
+
+        $( "#removeElememt" ).click(function() {
+            var checkboxes = document.getElementsByName('location[]');
+            
+            var myarray = [];
+            var myJSON = "";
+            for (var i=0, n=checkboxes.length;i<n;i++) 
+            {
+                if (checkboxes[i].checked) 
+                {
+                   myarray.push(checkboxes[i].value);
+                }
+            }
+                myJSON = JSON.stringify(myarray);
+                // create form inside javascrtipt
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "./dto/delete_client.php");
+                var cid = document.createElement("input");
+                cid.setAttribute("name", "clients");
+                cid.setAttribute("value", myJSON);
+                form.appendChild(cid);
+                document.body.appendChild(form);
+                form.submit();
+
+        });
+
+    
     </script>
+
+     <?php $conn->close(); ?>
 </div>
 </body>
 </html>
