@@ -1,3 +1,11 @@
+
+<?php 
+
+   session_start();
+    require_once './db/dbConnection.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,12 +81,12 @@
             <div class="col-lg-2 col-sm-2 col-md-2"  style="height: 100%;width:auto">
                 <div id="menuitm" >
                     <div class="btn-group-vertical " role="group" style="width: 100%">
-                        <button class="list-group-item" id="dashboard" onclick="location.href='index.html';"><img src="images/dashboard/u17.png" style="padding:10px;cursor: pointer;" /></button>
-                        <button class="list-group-item" id="production" onclick="location.href='production.html';"><img src="images/dashboard/u11.png" style="padding:10px;cursor: pointer;"/></button>
-                        <button class="list-group-item" id="delivery" onclick="location.href='delivery.html';"><img src="images/dashboard/u9.png" style="padding:10px;cursor: pointer;"/></button>
-                        <button class="list-group-item" id="reports" onclick="location.href='reports.html';"><img src="images/dashboard/u235.png" style="padding:10px;cursor: pointer;"/></button>
-                        <button class="list-group-item" id="staff" onclick="location.href='staff.html';"><img src="images/dashboard/u7.png" style="padding:10px;cursor: pointer;"/></button>
-                        <button class="list-group-item" id="client" onclick="location.href='client.html';"><img src="images/dashboard/client.png" style="padding:10px;cursor: pointer;"/></button>
+                        <button class="list-group-item" id="dashboard" onclick="location.href='index.php';"><img src="images/dashboard/u17.png" style="padding:10px;cursor: pointer;" /></button>
+                        <button class="list-group-item" id="production" onclick="location.href='production.php';"><img src="images/dashboard/u11.png" style="padding:10px;cursor: pointer;"/></button>
+                        <button class="list-group-item" id="delivery" onclick="location.href='delivery.php';"><img src="images/dashboard/u9.png" style="padding:10px;cursor: pointer;"/></button>
+                        <button class="list-group-item" id="reports" onclick="location.href='reports.php';"><img src="images/dashboard/u235.png" style="padding:10px;cursor: pointer;"/></button>
+                        <button class="list-group-item" id="staff" onclick="location.href='staff.php';"><img src="images/dashboard/u7.png" style="padding:10px;cursor: pointer;"/></button>
+                        <button class="list-group-item" id="client" onclick="location.href='client.php';"><img src="images/dashboard/client.png" style="padding:10px;cursor: pointer;"/></button>
 
                     </div>
                 </div>
@@ -105,22 +113,25 @@
                                                 <div class="modal-header" style="background: aliceblue;text-align: center;">
                                                     <h3 class="modal-title">Add New Client</h3>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <form action="/action_page.php" method="post">
+                                                <div class="modal-body" >
+                                                    <form action="/action_page.php" method="post" style="width:100%;padding-left: 18% ;padding-right: 10%;">
                                                         <div class= "row" style="padding: 30px;">
 
-                                                            <table class="table" style="display: grid;width:100%">
+                                                            <table class="table" style="width:100%">
 
                                                                 <thead  class="table">
                                                                 <tr style="border-radius: 5px;">
-                                                                    <th style="width: 140px;text-align: center;border: 1px solid rgba(0, 153, 255,1);">
+                                                                    <th style="text-align: center;border: 1px solid rgba(0, 153, 255,1)">
                                                                         <div class="btn-group" role="group"  >
-                                                                            <b>Client Number</b>
+
+                                                                            <span>
+                                                                               <b>Client Number</b>
+                                                                           </span>
                                                                         </div>
                                                                     </th>
-                                                                    <th style="background-color: rgba(0, 153, 255, 1);width: 224px;text-align: center;">
+                                                                    <th style="background-color: rgba(0, 153, 255, 1);text-align: center;width: 80%;text-align: center">
                                                                         <div class="btn-group" role="group" >
-                                                                            <b style="color: #fbfaff">  T7</b>
+                                                                            <b style="color: #fbfaff">  T7 </b>
                                                                         </div>
                                                                     </th>
                                                                 </tr>
@@ -199,25 +210,45 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row"> <input type="checkbox" class="form-check-input"></th>
-                                    <td>Champika  Thondilage</td>
-                                    <td>
-                                        <ul>
-                                            <li>senaka</li>
-                                            <li>sumeda</li>
-                                            <li>kekunawa</li>
-                                        </ul>
-                                    </td>
-                                    <td>Improving</td>
-                                    <td>21/4/2017</td>
-                                    <td>
-                                        <div class="circle" >
-                                            <a href="#" class="btn  btn-circle">More</a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                 <?php
 
+
+
+                                    $sql = "SELECT * FROM client";
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while ($row = $result->fetch_assoc()) {
+
+                                        $c_name=$row["client_name"];
+                                        $contact_person=$row["contact_persons"];
+                                        $address =$row["Address"];
+                                        $country =$row["country"];
+
+
+                                        echo '<tr>
+                                                <th scope="row"> <input type="checkbox" class="form-check-input"></th>
+                                                <td>'.$c_name.'</td>
+                                                <td>
+                                                    <ul>
+                                                        <li>'.$contact_person.'</li>
+                                                        
+                                                    </ul>
+                                                </td>
+                                                <td>'.$address.'</td>
+                                                <td>'.$country.'</td>
+                                                <td>
+                                                    <div class="circle" >
+                                                        <a href="#" class="btn  btn-circle">More</a>
+                                                    </div>
+                                                </td>
+                                            </tr>';
+
+                                        }
+                                    }
+                                    ?>
+                                
 
                                 </tbody>
                             </table>

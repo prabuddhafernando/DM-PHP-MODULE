@@ -69,12 +69,12 @@
         <div class="col-lg-1 col-sm-1 col-md-1"  style="height: 100%;width:auto">
             <div id="menuitm" >
             <div class="btn-group-vertical " role="group" style="width: 100%">
-                <button class="list-group-item" id="dashboard" onclick="location.href='index.html';"><img src="images/dashboard/u17.png" style="padding:10px;cursor: pointer;" /></button>
-                <button class="list-group-item" id="production" onclick="location.href='production.html';"><img src="images/dashboard/u11.png" style="padding:10px;cursor: pointer;"/></button>
-                <button class="list-group-item" id="delivery" onclick="location.href='delivery.html';"><img src="images/dashboard/u9.png" style="padding:10px;cursor: pointer;"/></button>
-                <button class="list-group-item" id="reports" onclick="location.href='reports.html';"><img src="images/dashboard/u235.png" style="padding:10px;cursor: pointer;"/></button>
-                <button class="list-group-item" id="staff" onclick="location.href='staff.html';"><img src="images/dashboard/u7.png" style="padding:10px;cursor: pointer;"/></button>
-                <button class="list-group-item" id="client" onclick="location.href='client.html';"><img src="images/dashboard/client.png" style="padding:10px;cursor: pointer;"/></button>
+                <button class="list-group-item" id="dashboard" onclick="location.href='index.php';"><img src="images/dashboard/u17.png" style="padding:10px;cursor: pointer;" /></button>
+                <button class="list-group-item" id="production" onclick="location.href='production.php';"><img src="images/dashboard/u11.png" style="padding:10px;cursor: pointer;"/></button>
+                <button class="list-group-item" id="delivery" onclick="location.href='delivery.php';"><img src="images/dashboard/u9.png" style="padding:10px;cursor: pointer;"/></button>
+                <button class="list-group-item" id="reports" onclick="location.href='reports.php';"><img src="images/dashboard/u235.png" style="padding:10px;cursor: pointer;"/></button>
+                <button class="list-group-item" id="staff" onclick="location.href='staff.php';"><img src="images/dashboard/u7.png" style="padding:10px;cursor: pointer;"/></button>
+                <button class="list-group-item" id="client" onclick="location.href='client.php';"><img src="images/dashboard/client.png" style="padding:10px;cursor: pointer;"/></button>
             </div>
             </div>
         </div>
