@@ -115,7 +115,7 @@
                                                 </div>
                                                 <div class="modal-body" >
                                                <!--  form starting  -->
-                                                    <form action="./dto/insert_client.php" method="post" style="width:100%;padding-left: 18% ;padding-right: 10%;">
+                                                    <form id="inserting" action="./dto/insert_client.php" method="post" style="width:100%;padding-left: 18% ;padding-right: 10%;">
                                                         <div class= "row" style="padding: 30px;">
 
                                                             <table class="table" style="width:100%">
@@ -149,8 +149,8 @@
                                                                 <tr>
                                                                     <td>Contact Person</td>
                                                                     <td  style="width: 80%;">
-                                                                        <!--<input type="text"  class="form-controlform-control" name="contcperson" style="width: 100%"/>-->
-                                                                        <div  class="input textarea clearfix tagfield" name="contact_person[]" multiple="multiple" style="width: 100%;"></div>
+                                                                        <input type="text"  class="form-control clearfix tagfield" id="hiden" name="contact_person" style="width: 100%;display: none;"/>
+                                                                        <div  class="input form-control  textarea clearfix tagfield" id="live" name="Contact" style="width: 100%;"></div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -171,7 +171,7 @@
 
                                                                         <div style="text-align: right;">
                                                                             <input class="btn btn-primary" type="submit" value="Process" style="font-weight: bold;">
-                                                                            <button class="btn" type="reset"><b>Cancel</b></button>
+                                                                            <button class="btn cancel" type="reset"><b>Cancel</b></button>
 
                                                                         </div>
 
@@ -196,7 +196,7 @@
 
 
                     </div>
-                    <div class="col-sm-11 col-lg-11 col-md-11" style="height: 100%;background-color: #ffffff;">
+                    <div class="col-sm-11 col-lg-11 col-md-11" style="height: initial;background-color: #ffffff;">
                         <div style="margin: 10px;border-color: #cccccc;border-style: solid;border-width: 1px;height: 95%;" >
 
                             <table class="table table-default" style="text-align: left">
@@ -277,17 +277,27 @@
 
     <script type="application/javascript">
 
-
+        var contactArray =[];
         var persons = new Taggle($('.tagfield.textarea')[0], {
             onBeforeTagAdd: function(event, tag) {
             },
             onTagAdd: function(event, tag) {
                 console.log("onTagAdd"+ tag);
+
                 for(var i=0;i<persons.getTags().elements.length;i++){
                     var v = persons.getTags().elements[i].textContent;
                     var d = v.substr(0,(v.length-1))
-                    console.log(d);
+                    //console.log(d);
+                    contactArray.push(d);
                 }
+
+                for (var i = 0; i < contactArray.length; i++) {
+                   console.log(contactArray[i]);
+                }
+                var myJSON = "";
+                 myJSON = JSON.stringify(contactArray);
+                document.getElementById("hiden").value = myJSON;
+
 
                 $('.taggle').css('background', '#8fd6f5');
             },
@@ -295,10 +305,14 @@
                return true;
             },
             onTagRemove: function(event, tag) {
-                console.log("onTagRemove"+ tag);
+               // console.log("onTagRemove"+ tag);
             },
         });
 
+            $( ".cancel" ).click(function() {
+                // handle this
+             
+            });
 
 
 
@@ -317,6 +331,7 @@
                 }
             }
                 if(myarray.length>0){
+
                     myJSON = JSON.stringify(myarray);
                     var form = document.createElement("form");
                     form.setAttribute("method", "post");
@@ -327,6 +342,7 @@
                     form.appendChild(cid);
                     document.body.appendChild(form);
                     form.submit();
+
                 }else{
                     alert("please select atleat one record!");
                 }
