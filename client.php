@@ -150,7 +150,7 @@
                                                                     <td>Contact Person</td>
                                                                     <td  style="width: 80%;">
                                                                         <!--<input type="text"  class="form-controlform-control" name="contcperson" style="width: 100%"/>-->
-                                                                        <div  class="input textarea clearfix tagfield" name="contact_person" style="width: 100%;"></div>
+                                                                        <div  class="input textarea clearfix tagfield" name="contact_person[]" multiple="multiple" style="width: 100%;"></div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -212,9 +212,6 @@
                                 </thead>
                                 <tbody>
                                  <?php
-
-
-
                                     $sql = "SELECT * FROM client";
                                     $result = $conn->query($sql);
 
@@ -222,18 +219,30 @@
                                         // output data of each row
                                         while ($row = $result->fetch_assoc()) {
 
+                                        $ID = $row['ID'];
                                         $c_name=$row["client_name"];
-                                        $contact_person=$row["contact_persons"];
-                                        $address =$row["Address"];
+                                       
+                                        $address =$row["address"];
                                         $country =$row["country"];
 
+                                         $sql2 = "select contacts from contactperson where ID =".$ID;
+                                         $result2 = $conn->query($sql2);
+
+
+                                            $templist = "";
+                                            if ($result2 ->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $result2->fetch_assoc()) {
+                                                    $templist = $templist.'<li>'.$row['contacts'].'</li>';
+                                                }
+                                            }
 
                                         echo '<tr>
                                                 <th scope="row"> <input type="checkbox" name="location[]" value="'.$c_name.'" class="form-check-input"></th>
                                                 <td>'.$c_name.'</td>
                                                 <td>
                                                     <ul>
-                                                        <li>'.$contact_person.'</li>
+                                                       '.$templist.'
                                                         
                                                     </ul>
                                                 </td>
@@ -296,6 +305,8 @@
         $( "#removeElememt" ).click(function() {
             var checkboxes = document.getElementsByName('location[]');
             
+            if(checkboxes.length>0){
+
             var myarray = [];
             var myJSON = "";
             for (var i=0, n=checkboxes.length;i<n;i++) 
@@ -305,17 +316,24 @@
                    myarray.push(checkboxes[i].value);
                 }
             }
-                myJSON = JSON.stringify(myarray);
-                // create form inside javascrtipt
-                var form = document.createElement("form");
-                form.setAttribute("method", "post");
-                form.setAttribute("action", "./dto/delete_client.php");
-                var cid = document.createElement("input");
-                cid.setAttribute("name", "clients");
-                cid.setAttribute("value", myJSON);
-                form.appendChild(cid);
-                document.body.appendChild(form);
-                form.submit();
+                if(myarray.length>0){
+                    myJSON = JSON.stringify(myarray);
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "post");
+                    form.setAttribute("action", "./dto/delete_client.php");
+                    var cid = document.createElement("input");
+                    cid.setAttribute("name", "clients");
+                    cid.setAttribute("value", myJSON);
+                    form.appendChild(cid);
+                    document.body.appendChild(form);
+                    form.submit();
+                }else{
+                    alert("please select atleat one record!");
+                }
+
+            }else{
+                alert("no records to delete");
+            }
 
         });
 
