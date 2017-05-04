@@ -171,7 +171,9 @@
 
                                                                         <div style="text-align: right;">
                                                                             <input class="btn btn-primary" type="submit" value="Process" style="font-weight: bold;">
-                                                                            <button class="btn cancel" type="reset"><b>Cancel</b></button>
+                                                                            <button class="btn cancel" type="reset"><b>reset</b></button>
+                                                                            <button id="resetbtn" class="btn" type="reset"><b>cancel</b></button>
+
 
                                                                         </div>
 
@@ -313,6 +315,12 @@
                 // handle this
              
             });
+            $( "#resetbtn" ).click(function() {
+               
+                $('.modal').modal('toggle');
+             
+            });
+            
 
 
 
