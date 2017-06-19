@@ -78,6 +78,8 @@
             </div>
             </div>
         </div>
+
+        
         <!-- middle pane -->
         <div id="middlepane" class="col-lg-9 col-sm-10 col-md-7" style="background-color:#e4e4e4;height: 100%;text-align: center;padding-left: 25px;padding-right: 28px;">
 
