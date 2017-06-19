@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.canvasjs.min.js"></script>
+   <!-- <script type="text/javascript" src="js/canvasjs.min.js"></script>-->
+   <script src="js/topup.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
 
@@ -203,8 +204,8 @@
                         </div>
 
                     </div>
-                    <div class="row" style="padding-left:15px;padding-right:15px;text-align: left" >
-                        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                    <div class="row" style="height: 100%" >
+                        <canvas id="chartContainer" align="center" width="500" height="300" ></canvas>
                     </div>
                 </div>
 

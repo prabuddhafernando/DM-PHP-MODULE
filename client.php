@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 
    session_start();
     require_once './db/dbConnection.php';
@@ -223,7 +223,7 @@
 
                                         $ID = $row['ID'];
                                         $c_name=$row["client_name"];
-                                       
+
                                         $address =$row["address"];
                                         $country =$row["country"];
 
@@ -260,7 +260,7 @@
                                         }
                                     }
                                     ?>
-                                
+
 
                                 </tbody>
                             </table>
@@ -313,27 +313,27 @@
 
             $( ".cancel" ).click(function() {
                 // handle this
-             
+
             });
             $( "#resetbtn" ).click(function() {
-               
+
                 $('.modal').modal('toggle');
-             
+
             });
-            
+
 
 
 
         $( "#removeElememt" ).click(function() {
             var checkboxes = document.getElementsByName('location[]');
-            
+
             if(checkboxes.length>0){
 
             var myarray = [];
             var myJSON = "";
-            for (var i=0, n=checkboxes.length;i<n;i++) 
+            for (var i=0, n=checkboxes.length;i<n;i++)
             {
-                if (checkboxes[i].checked) 
+                if (checkboxes[i].checked)
                 {
                    myarray.push(checkboxes[i].value);
                 }
@@ -361,7 +361,7 @@
 
         });
 
-    
+
     </script>
 
      <?php $conn->close(); ?>

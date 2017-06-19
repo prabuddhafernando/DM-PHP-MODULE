@@ -4,61 +4,20 @@ window.onload = function () {
     $('#dashboard').css('background','#e4e4e4');
 
 
-    var chart = new CanvasJS.Chart("chartContainer",
-        {
-            theme: "theme1",
-            title: {
-                text: ""
-            },
-            animationEnabled: true,
-            axisX: {
-                valueFormatString: "MMM",
-                interval: 1,
-                intervalType: "month"
 
-            },
-            axisY: {
-                includeZero: false
-
-            },
-            data: [
-                {
-                    type: "line",
-                    //lineThickness: 3,
-                    dataPoints: [
-                        {x: new Date(2012, 00, 1), y: 450},
-                        {x: new Date(2012, 01, 1), y: 414},
-                        {
-                            x: new Date(2012, 02, 1),
-                            y: 520,
-                            indexLabel: "highest",
-                            markerColor: "red",
-                            markerType: "triangle"
-                        },
-                        {x: new Date(2012, 03, 1), y: 460},
-                        {x: new Date(2012, 04, 1), y: 450},
-                        {x: new Date(2012, 05, 1), y: 500},
-                        {x: new Date(2012, 06, 1), y: 480},
-                        {x: new Date(2012, 07, 1), y: 480},
-                        {
-                            x: new Date(2012, 08, 1),
-                            y: 410,
-                            indexLabel: "lowest",
-                            markerColor: "DarkSlateGrey",
-                            markerType: "cross"
-                        },
-                        {x: new Date(2012, 09, 1), y: 500},
-                        {x: new Date(2012, 10, 1), y: 480},
-                        {x: new Date(2012, 11, 1), y: 510}
-
-                    ]
-                }
-
-
-            ]
-        });
-
-    chart.render();
+    $( document ).ready(function() {
+        var chartData = {
+            node: "chartContainer",
+            dataset: [122, 65, 80, 84, 33, 55, 95, 15, 268, 47, 72, 69],
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            pathcolor: "#288ed4",
+            fillcolor: "#8e8e8e",
+            xPadding: 100,
+            yPadding: 0,
+            ybreakperiod: 50,
+        };
+        drawlineChart(chartData);
+    });
 }
 
 $(function(){
